@@ -1,7 +1,4 @@
-from ffdata import get_Player_Overall_Index
-from ffdata import get_Player_Position_Index
-from ffdata import get_Team_Overall_Index
-from ffdata import get_Team_Position_Index
+from ffdata import *
 
 Slaz = {
     "QB": ["Russell Wilson","Andrew Luck"],
@@ -45,7 +42,6 @@ positions = ["QB","RB","WR","TE","K","DST"]
 print("All positions rankings\n")
 
 get_Team_Overall_Index(Slazstarters)
-
 
 print("Individual Position rankings\n")
 
