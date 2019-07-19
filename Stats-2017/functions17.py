@@ -1,22 +1,10 @@
-from bs4 import BeautifulSoup
-import requests
+from data17 import *
 import numpy as np
 import pandas as pd
 
 
-qbdata = pd.read_csv("Stats-2018/FantasyPros_Fantasy_Football_Statistics_QB.csv")
-rbdata = pd.read_csv("Stats-2018/FantasyPros_Fantasy_Football_Statistics_RB.csv")
-wrdata = pd.read_csv("Stats-2018/FantasyPros_Fantasy_Football_Statistics_WR.csv")
-tedata = pd.read_csv("Stats-2018/FantasyPros_Fantasy_Football_Statistics_TE.csv")
-kdata = pd.read_csv("Stats-2018/FantasyPros_Fantasy_Football_Statistics_K.csv")
-dstdata = pd.read_csv("Stats-2018/FantasyPros_Fantasy_Football_Statistics_DST.csv")
-alldata = pd.read_csv("Stats-2018/FantasyPros_Fantasy_Football_Points.csv")
-
 positions = ["QB","RB","WR","TE","K","DST"]
 
-#print(alldata.head())
-#print(qbdata.head())
-#print(wrdata.head())
 
 def get_Player_Overall_Index(player):
     try:
@@ -59,7 +47,7 @@ def get_Player_Position_Index(position,player):
             if row.startswith(player):
                 return np.where(dstdata["Player"]==row)[0][0]+1
 
-def get_Team_Overall_Index(team):
+def get_Team_Overall_Rank(team):
     players=0
     totalrank = 0
     for position in positions:
@@ -70,7 +58,7 @@ def get_Team_Overall_Index(team):
             players+=1
     return totalrank/players
 
-def get_Team_Position_Index(team):
+def get_Team_Position_Rank(team):
     players=0
     totalrank = 0
     for position in positions:
@@ -79,4 +67,13 @@ def get_Team_Position_Index(team):
             #print("{} {}".format(index,player))
             totalrank+=index
             players+=1
+    return totalrank/players
+
+def get_Draft_Rank(team):
+    players =0
+    totalrank =0
+    for player in team:
+        index = get_Player_Position_Index(team[player],player)+1
+        totalrank+=index
+        players+=1
     return totalrank/players
