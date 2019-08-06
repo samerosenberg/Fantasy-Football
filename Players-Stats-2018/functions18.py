@@ -8,32 +8,27 @@ positions = ["QB","RB","WR","TE","K","DST"]
 
 def get_Player_Overall_Index(player):
     try:
-        return np.where(alldata["Player"]==player)[0][0]+1
+        return alldata.loc[alldata["Player"].str.startswith(player,na=False)].index[0]+1
     except IndexError as error:
         print(player)
         return 526
 
 def get_Player_Position_Index(position,player):
     if(position == "QB"):
-        for row in qbdata["Player"]:
-            if row.startswith(player):
-                return np.where(qbdata["Player"]==row)[0][0]+1
+        try:
+            return qbdata.loc[qbdata["Player"].str.startswith(player,na=False)].index[0]+1
+        except IndexError as error:
+            return 157
     elif(position == "RB"):
-        for row in rbdata["Player"]:
-            try:
-                if row.startswith(player):
-                    return np.where(rbdata["Player"]==row)[0][0]+1
-            except AttributeError as error:
-                #print(player)
-                return 334
+        try:
+            return rbdata.loc[rbdata["Player"].str.startswith(player,na=False)].index[0]+1
+        except IndexError as error:
+            return 334
     elif(position == "WR"):
-        for row in wrdata["Player"]:
-            try:
-                if row.startswith(player):
-                    return np.where(wrdata["Player"]==row)[0][0]+1
-            except AttributeError as error:
-                #print(player)
-                return 502
+        try:
+            return wrdata.loc[wrdata["Player"].str.startswith(player,na=False)].index[0]+1
+        except IndexError as error:
+            return 502
     elif(position == "TE"):
         for row in tedata["Player"]:
             if row.startswith(player):
@@ -72,8 +67,28 @@ def get_Team_Position_Rank(team):
 def get_Draft_Rank(team):
     players =0
     totalrank =0
-    for player in team:
+    numqb, numte, numwr, numrb, numdst,numk=0,0,0,0,0,0
+    for player in team.keys():
         index = get_Player_Position_Index(team[player],player)+1
-        totalrank+=index
+        if team[player]=="QB":
+            numqb+=1
+            rank= index*(1/numqb)
+        elif team[player]=="RB":
+            numrb+=1
+            rank= index*(1/numrb)
+        elif team[player]=="WR":
+            numwr+=1
+            rank= index*(1/numwr)
+        elif team[player]=="TE":
+            numte+=1
+            rank= index*(1/numte)
+        elif team[player]=="DST":
+            numdst+=1
+            rank= index*(1/numdst)
+        elif team[player]=="K":
+            numk+=1
+            rank= index*(1/numk)
+        totalrank+= rank
         players+=1
+        print("{}\t : {}\t : {}\t : \t{}".format(player,players,index ,rank))
     return totalrank/players

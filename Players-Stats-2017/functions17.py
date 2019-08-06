@@ -19,13 +19,14 @@ def get_Player_Position_Index(position,player):
             if row.startswith(player):
                 return np.where(qbdata["Player"]==row)[0][0]+1
     elif(position == "RB"):
-        for row in rbdata["Player"]:
-            try:
-                if row.startswith(player):
-                    return np.where(rbdata["Player"]==row)[0][0]+1
-            except AttributeError as error:
+        return rbdata.loc[rbdata["Player"]==player].index[0]+1
+        #for row in rbdata["Player"]:
+        #    try:
+        #        if row.startswith(player):
+        #            return np.where(rbdata["Player"]==row)[0][0]+1
+        #    except AttributeError as error:
                 #print(player)
-                return 334
+        #        return 334
     elif(position == "WR"):
         for row in wrdata["Player"]:
             try:

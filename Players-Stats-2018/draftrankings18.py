@@ -1,24 +1,44 @@
 from functions18 import *
 import pandas as pd
 import numpy as np
+from collections import OrderedDict
 
+Sam=OrderedDict()
+Sam["Ezekiel Elliott"]="RB"
+Sam["Keenan Allen"]="WR"
+Sam["Jordan Howard"]="RB"
+Sam["Derrick Henry"]="RB"
+Sam["Larry Fitzgerald"]="WR"
+Sam["Marvin Jones"]= "WR"
+Sam["Jamaal Williams"]="RB"
+Sam["Delanie Walker"]="TE"
+Sam["Chris Hogan"]="WR"
+Sam["Emmanuel Sanders"]="WR"
+Sam["Carson Wentz"]="QB"
+Sam["Kelvin Benjamin"]="WR"
+Sam["Jamison Crowder"]="WR"
+Sam["Sterling Shepard"]="WR"
+Sam["Pittsburgh Steelers"]="DST"
+Sam["Chris Boswell"]="K"
 
-Sam ={
-    "QB": ["Carson Wentz"],
-    "RB": ["Ezekiel Elliott","Jordan Howard","Jamaal Williams","Derrick Henry"],
-    "WR": ["Keenan Allen","Larry Fitzgerald","Marvin Jones","Chris Hogan","Emmanuel Sanders","Kelvin Benjamin","Jamison Crowder","Sterling Shepard"],
-    "TE": ["Delanie Walker"],
-    "K": ["Chris Boswell"],
-    "DST": ["Pittsburgh Steelers"]
-}
-Slaz = {
-    "QB": ["Andrew Luck"],
-    "RB": ["Todd Gurley","Joe Mixon","Kenyan Drake","Chris Thompson","Kerryon Johnson","Peyton Barber"],
-    "WR": ["Davante Adams","Amari Cooper","Marquise Goodwin","Robby Anderson","D.J. Moore","Cameron Meredith"],
-    "TE": ["Evan Engram"],
-    "K": ["Daniel Carlson"],
-    "DST": ["Baltimore Ravens"]
-}
+Slaz = OrderedDict()
+Slaz["Todd Gurley"] = "RB"
+Slaz["Joe Mixon"] = "RB"
+Slaz["Davante Adams"] = "WR"
+Slaz["Kenyan Drake"] = "RB"
+Slaz["Amari Cooper"] = "WR"
+Slaz["Chris Thompson"] = "RB"
+Slaz["Marquise Goodwin"] = "WR"
+Slaz["Evan Engram"] = "TE"
+Slaz["Kerryon Johnson"] = "RB"
+Slaz["Robby Anderson"] = "WR"
+Slaz["Andrew Luck"] = "QB"
+Slaz["Peyton Barber"] = "RB"
+Slaz["D.J. Moore"] = "WR"
+Slaz["Cameron Meredith"] = "WR"
+Slaz["Baltimore Ravens"] = "DST"
+Slaz["Daniel Carlson"] = "K"
+
 Zach = {
     "QB": ["Cam Newton"],
     "RB": ["Kareem Hunt","Jerick McKinnon","LeSean McCoy","Jay Ajayi","Dion Lewis"],
@@ -68,30 +88,34 @@ Matt = {
     "DST": ["Jacksonville Jaguars"]
 }
 
-RobDraft={
-    "Saquon Barkley": "RB",
-    "Alvin Kamara": "RB",
-    "Doug Baldwin": "WR",
-    "Mike Evans": "WR",
-    "Golden Tate": "WR",
-    "Kyle Rudolph": "TE",
-    "Deshaun Watson": "QB",
-    "Jarvis Landry": "WR",
-    "Nelson Agholor":"WR",
-    "Sony Michel":"RB",
-    "James Conner":"RB",
-    "Minnesota Vikings":"DST",
-    "Latavius Murray": "RB",
-    "Jordan Reed": "TE",
-    "Jake Elliot":"K",
-    "Calvin Ridley":"WR"
-}
+RobDraft = OrderedDict()
+RobDraft["Saquon Barkley"] = "RB"
+RobDraft["Alvin Kamara"]= "RB"
+RobDraft["Doug Baldwin"]= "WR"
+RobDraft["Mike Evans"]= "WR"
+RobDraft["Golden Tate"]= "WR"
+RobDraft["Kyle Rudolph"]= "TE"
+RobDraft["Deshaun Watson"]= "QB"
+RobDraft["Jarvis Landry"]= "WR"
+RobDraft["Nelson Agholor"]="WR"
+RobDraft["Sony Michel"]="RB"
+RobDraft["James Conner"]="RB"
+RobDraft["Minnesota Vikings"]="DST"
+RobDraft["Latavius Murray"]= "RB"
+RobDraft["Jordan Reed"]= "TE"
+RobDraft["Jake Elliot"]="K"
+RobDraft["Calvin Ridley"]="WR"
+
+
+
+#print(get_Player_Position_Index("RB","Melvin Gordon"))
 
 print("Rob {}".format(get_Draft_Rank(RobDraft)))
-print("Matt {}".format(get_Team_Position_Rank(Matt)))
-print("Slaz {}".format(get_Team_Position_Rank(Slaz)))
-print("Krum {}".format(get_Team_Position_Rank(Krum)))
-print("Mike {}".format(get_Team_Position_Rank(Mike)))
-print("Sam {}".format(get_Team_Position_Rank(Sam)))
-print("Frank {}".format(get_Team_Position_Rank(Frank)))
-print("Zach {}".format(get_Team_Position_Rank(Zach)))
+#print("Matt {}".format(get_Team_Position_Rank(Matt)))
+#print("Slaz {}".format(get_Team_Position_Rank(Slaz)))
+#print("Krum {}".format(get_Team_Position_Rank(Krum)))
+#print("Mike {}".format(get_Team_Position_Rank(Mike)))
+print("Sam {}".format(get_Draft_Rank(Sam)))
+print("Slaz {}".format(get_Draft_Rank(Slaz)))
+#print("Frank {}".format(get_Team_Position_Rank(Frank)))
+#print("Zach {}".format(get_Team_Position_Rank(Zach)))
